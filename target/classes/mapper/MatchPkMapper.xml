@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fw.vote.dao.MatchPkDao">
+
+	<!-- firstPlayerId,firstSongName,firstTicketCount,firstNeedScore, firstScore,secondPlayerId,
+   secondSongName, seconTicketCount,secondNeedScore,secondScore,battleFlag; -->
+	
+
+     <select id="selectMatchPkMap" parameterType="MatchPk" resultType="Map">
+
+         SELECT
+         a.*,
+         b.playerId "firstPlayerId",b.playerName "firstPlayerName",
+         c.playerId "secondPlayerId",c.playerName "secondPlayerName",
+         d.*
+         FROM matchpkinfo a
+         LEFT JOIN player b ON a.firstPlayerId =b.playerId
+         LEFT JOIN player c ON a.secondPlayerId=c.playerId
+         LEFT JOIN matchtable d ON a.matchId=d.matchId
+        <where>
+         <if test="matchId!=null and matchId!=''">
+             and matchId like "%"#{matchId}"%"
+         </if>
+
+        </where>
+   </select>
+   <insert id="insertMatchPk" parameterType="MatchPk">
+   		insert into matchpkinfo(firstPlayerId,firstSongName,secondPlayerId,secondSongName,matchId,grade)
+   		value(#{firstPlayerId},#{firstSongName},#{secondPlayerId},#{secondSongName},#{matchId},#{grade})
+   </insert>
+   <update id="updateMatchPk" parameterType="MatchPk">
+   		update matchpkinfo
+   		 <set>
+             <if test="matchId!=null and matchId!=''">
+                 matchId=#{matchId},
+             </if>
+             <if test="firstPlayerId!=null and firstPlayerId!=''">
+                 firstPlayerId=#{firstPlayerId},
+             </if>
+             <if test="secondPlayerId!=null and secondPlayerId!=''">
+                 secondPlayerId=#{secondPlayerId},
+             </if>
+              <if test="firstSongName!=null and firstSongName!=''">
+                  firstSongName=#{firstSongName},
+              </if>
+              <if test="firstTicketCount!=null and firstTicketCount!=''">
+                  firstTicketCount=#{firstTicketCount},
+              </if>
+              <if test="firstNeedScore!=null and firstNeedScore!=''">
+                  firstNeedScore=#{firstNeedScore},
+              </if>
+              <if test="firstScore!=null and firstScore!=''">
+                  firstScore=#{firstScore},
+              </if>
+              <if test="secondSongName!=null and secondSongName!=''">
+                  secondSongName=#{secondSongName},
+              </if>
+              <if test="secondTicketCount!=null and secondTicketCount!=''">
+                  secondTicketCount=#{secondTicketCount},
+              </if>
+              <if test="secondNeedScore!=null and secondNeedScore!=''">
+                  secondNeedScore=#{secondNeedScore},
+              </if>
+              <if test="secondScore!=null and secondScore!=''">
+                  secondScore=#{secondScore},
+              </if>
+          </set>
+          where  battleId=#{battleId}
+   </update>
+   <select id="selectById" parameterType="MatchPk" resultType="MatchPk">
+   		select * from matchpkinfo where battleId=#{battleId}
+   </select>
+    
+</mapper>

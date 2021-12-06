@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fw.vote.dao.UserDao">
+    <!--插入-->
+    <insert id="insert" parameterType="User">
+        insert into user (account,password,name,sex,telephone,grade,scale)
+        values (#{account},#{password},#{name},#{sex},#{telephone},#{grade},#{scale})
+    </insert>
+
+    <!--根据账户查询-->
+    <select id="selectByAccount" parameterType="User" resultType="User">
+        select * from user
+       where account=#{account}
+    </select>
+
+    <!--根据id查询-->
+    <select id="selectById" parameterType="int" resultType="User">
+        select * from user where userid=#{userid} ;
+    </select>
+
+
+    <select id="getCount" resultType="int">
+      SELECT COUNT(*) FROM user
+    </select>
+
+    <!--查询所有-->
+    <select id="select"  resultType="User">
+        select * from user
+        <where>
+            <if test="account!=null and account!=''">
+                and account like "%"#{account}"%"
+            </if>
+            <if test="name!=null and name!=''">
+                and name like "%"#{name}"%"
+            </if>
+        </where>
+        limit #{index},#{pageSize}
+    </select>
+
+
+    <!--修改-->
+    <update id="update" parameterType="User">
+        update user
+        <set>
+            <if test="account!=null and account!=''">
+                account=#{account},
+            </if>
+            <if test="password!=null and password!=''">
+                password=#{password},
+            </if>
+            <if test="name!=null and name!=''">
+                name=#{name},
+            </if>
+            <if test="sex!=null and sex!=''">
+                sex=#{sex},
+            </if>
+            <if test="telephone!=null and telephone!=''">
+                telephone=#{telephone},
+            </if>
+            <if test="scale!=null and scale!=''">
+                scale=#{scale},
+            </if>
+        </set>
+        where userid=#{userid}
+    </update>
+
+    <!--删除-->
+    <delete id="delete" parameterType="User">
+        delete from  user where userid=#{userid}
+    </delete>
+
+
+</mapper>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fw.vote.dao.MatchDao">
+
+    <select id="select"   resultType="match">
+        select * from matchtable
+        <where>
+            <if test="matchName!=null and matchName!=''">
+                and matchName like "%"#{matchName}"%"
+            </if>
+            <if test="matchAddress!=null and matchAddress!=''">
+                and matchAddress like "%"#{matchAddress}"%"
+            </if>
+            <if test="matchTime!=null and matchTime!=''">
+                and matchTime like "%"#{matchTime}"%"
+            </if>
+        </where>
+    </select>
+
+    <insert id="insert" parameterType="com.fw.vote.model.Match">
+        insert into matchtable (matchName,matchAddress,matchTime,matchInfo,matchImage)values (#{matchName},#{matchAddress},#{matchTime},#{matchInfo},#{matchImage})
+    </insert>
+
+    <delete id="delete">
+        delete from matchtable where matchId=#{matchId}
+    </delete>
+
+    <select id="getMatchById"  resultType="com.fw.vote.model.Match">
+        select * from matchtable where matchId=#{matchId}
+    </select>
+
+    <update id="update" parameterType="com.fw.vote.model.Match">
+        update matchtable
+        <set>
+            <if test="matchName!=null and matchName!=''">
+                matchName=#{matchName},
+            </if>
+            <if test="matchAddress!=null and matchAddress!=''">
+                matchAddress=#{matchAddress},
+            </if>
+            <if test="matchTime!=null">
+                matchTime=#{matchTime},
+            </if>
+            <if test="matchInfo!=null and matchInfo!=''">
+                matchInfo=#{matchInfo},
+            </if>
+            <if test="matchImage!=null and matchImage!=''">
+                matchImage=#{matchImage}
+            </if>
+        </set>
+
+          where  matchId=#{matchId}
+
+    </update>
+
+
+    <select id="count" resultType="int">
+        SELECT COUNT(*)  FROM vote where matchId=#{matchId}
+    </select>
+</mapper>

@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: chen1129
+    url: jdbc:mysql://127.0.0.1:3306/vote?characterEncoding=UTF-8
+    #访问地址比如：http://localhost:8080/vote/user/toLogin
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+  servlet:
+    multipart:
+     enabled: true
+     max-file-size: 50mb
+     max-request-size: 50mb
+
+mybatis:
+  mapper-locations: mapper/*.xml
+  type-aliases-package: com.fw.vote.model
+server:
+  servlet:
+    context-path: /vote
+

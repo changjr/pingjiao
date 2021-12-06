@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fw.vote.dao.PlayerDao">
+
+    <select id="getCount" resultType="int">
+      SELECT COUNT(*) FROM player
+    </select>
+
+    <!-- 插入-->
+        <insert id="insert" parameterType="Player">
+              insert into player( playerNo, playerName,playerImage,playerInfo)
+              values (#{playerNo},#{playerName},#{playerImage},#{playerInfo})
+        </insert>
+    <!-- 查询-->
+        <select id="select"  resultType="Player">
+              select * from player
+              <where>
+                  <if test="playerNo!=null and playerNo!=''">
+                     and playerNo like "%"#{playerNo}"%"
+                  </if>
+                  <if test="playerName!=null and playerName!=''">
+                     and playerName like "%"#{playerName}"%"
+                  </if>
+              </where>
+            <if test="index!=null and index.toString()!=''">
+                limit #{index},#{pageSize}
+            </if>
+
+        </select>
+    <!-- 根据Id查询-->
+        <select id="selectById"  resultType="player">
+              select * from  player where playerId=#{playerId}
+        </select>
+    <!-- 修改-->
+        <update id="update" parameterType="Player">
+              update player
+              <set>
+                  <if test="playerId!=null and playerId!=''">
+                      playerId=#{playerId},
+                  </if>
+                  <if test="playerNo!=null and playerNo!=''">
+                      playerNo=#{playerNo},
+                  </if>
+                  <if test="playerName!=null and playerName!=''">
+                      playerName=#{playerName},
+                  </if>
+                  <if test="playerImage!=null and playerImage!=''">
+                      playerImage=#{playerImage},
+                  </if>
+                  <if test="playerInfo!=null and playerInfo!=''">
+                      playerInfo=#{playerInfo},
+                  </if>
+              </set>
+                where  playerId=#{playerId}
+        </update>
+    <!-- 删除-->
+        <delete id="delete" parameterType="Player">
+                delete  from  player where  playerId=#{playerId}
+        </delete>
+
+
+</mapper>
