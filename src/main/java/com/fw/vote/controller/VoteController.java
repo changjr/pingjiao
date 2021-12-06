@@ -17,8 +17,8 @@ public class VoteController {
     private VoteService voteService;
     @ResponseBody
     @RequestMapping("vote")
-    public Map<String,Object> vote(Vote vote, HttpSession session,String flag){
-       return voteService.save(vote,session,flag);
+    public Map<String,Object> vote(Vote vote, HttpSession session){
+       return voteService.save(vote,session);
     }
 
 }

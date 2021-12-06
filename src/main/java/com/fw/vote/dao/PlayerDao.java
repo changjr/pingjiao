@@ -12,4 +12,5 @@ public interface PlayerDao {
     public Player selectById(String playerId);
     public List<Player> count(Player player);
     public int getCount(Player player);
+    public Player selectByNo(String playerId);
 }

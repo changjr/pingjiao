@@ -21,7 +21,7 @@
   <form action="${ctx}/Mpk/saveMatchPk" method="post"  class="layui-form" style="margin-top: 30px;">
          <div class="layui-form-item">
          		  <div class="layui-form-item">
-         			<label class="layui-form-label">比赛名称</label>
+         			<label class="layui-form-label">评教活动名称</label>
          				<div class="layui-input-block">
          				<select name="matchId" id="matchId" lay-verify="required">
          				    <option></option>
@@ -31,7 +31,7 @@
          				</select>
          				</div>
          		  </div><br>
-			<label class="layui-form-label">选手1</label>
+			<label class="layui-form-label">教师名称</label>
 				<div class="layui-input-block">
 				<select name="firstPlayerId" id="firstPlayerId" lay-verify="required">	
 				    <option></option>
@@ -39,12 +39,6 @@
 	                	<option value="${player.playerId}">${player.playerName}</option>
 	            	</c:forEach>			        
 				</select>
-				</div>
-		  </div>
-		  <div class="layui-form-item">
-			<label class="layui-form-label">歌曲名</label>
-				<div class="layui-input-block">
-					<input type="text" name="firstSongName" required  lay-verify="required" placeholder="请输入歌曲名" autocomplete="off" class="layui-input">
 				</div>
 		  </div>
 
@@ -59,12 +53,7 @@
 				</select>
 				</div>
 		  </div>
-		  <div class="layui-form-item" >
-			<label class="layui-form-label">歌曲名</label>
-				<div class="layui-input-block">
-					<input type="text" name="secondSongName" required  lay-verify="required" placeholder="请输入歌曲名" autocomplete="off" class="layui-input">
-				</div>
-		  </div>
+
 		  				   <div class="layui-form-item">
           				    <label class="layui-form-label">所属年级</label>
           				    <div class="layui-input-block">

@@ -4,21 +4,58 @@ public class MatchPk {
     private String matchId;
     private String battleId;
     private String firstPlayerId;
-    private String firstSongName;
-    private int firstTicketCount;
-    private String firstNeedScore;
-    private String firstScore;
     private String secondPlayerId;
-    private String secondSongName;
     private int secondTicketCount;
-    private String secondNeedScore;
-    private String secondScore;
     private String battleFlag;
-    private String playerName;
-    private String playerId;
 
+    private String matchName;
+    private String matchTime;
     private String grade;
-
+    private String teacherName;
+    private String courseName;
+    private String matchInfo;
+    
+    
+    public String getMatchName() {
+        return matchName;
+    }
+    
+    public void setMatchName(String matchName) {
+        this.matchName = matchName;
+    }
+    
+    public String getMatchTime() {
+        return matchTime;
+    }
+    
+    public void setMatchTime(String matchTime) {
+        this.matchTime = matchTime;
+    }
+    
+    public String getTeacherName() {
+        return teacherName;
+    }
+    
+    public void setTeacherName(String teacherName) {
+        this.teacherName = teacherName;
+    }
+    
+    public String getCourseName() {
+        return courseName;
+    }
+    
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+    
+    public String getMatchInfo() {
+        return matchInfo;
+    }
+    
+    public void setMatchInfo(String matchInfo) {
+        this.matchInfo = matchInfo;
+    }
+    
     public String getGrade() {
         return grade;
     }
@@ -26,24 +63,6 @@ public class MatchPk {
     public void setGrade(String grade) {
         this.grade = grade;
     }
-
-    public String getPlayerId() {
-		return playerId;
-	}
-
-	public void setPlayerId(String playerId) {
-		this.playerId = playerId;
-	}
-
-
-
-	public String getPlayerName() {
-		return playerName;
-	}
-
-	public void setPlayerName(String playerName) {
-		this.playerName = playerName;
-	}
 
 	public String getMatchId() {
         return matchId;
@@ -69,22 +88,6 @@ public class MatchPk {
         this.firstPlayerId = firstPlayerId;
     }
 
-    public String getFirstSongName() {
-        return firstSongName;
-    }
-
-    public void setFirstSongName(String firstSongName) {
-        this.firstSongName = firstSongName;
-    }
-
-    public int getFirstTicketCount() {
-        return firstTicketCount;
-    }
-
-    public void setFirstTicketCount(int firstTicketCount) {
-        this.firstTicketCount = firstTicketCount;
-    }
-
     public int getSecondTicketCount() {
         return secondTicketCount;
     }
@@ -92,22 +95,7 @@ public class MatchPk {
     public void setSecondTicketCount(int secondTicketCount) {
         this.secondTicketCount = secondTicketCount;
     }
-
-    public String getFirstNeedScore() {
-        return firstNeedScore;
-    }
-
-    public void setFirstNeedScore(String firstNeedScore) {
-        this.firstNeedScore = firstNeedScore;
-    }
-
-    public String getFirstScore() {
-        return firstScore;
-    }
-
-    public void setFirstScore(String firstScore) {
-        this.firstScore = firstScore;
-    }
+    
 
     public String getSecondPlayerId() {
         return secondPlayerId;
@@ -116,31 +104,7 @@ public class MatchPk {
     public void setSecondPlayerId(String secondPlayerId) {
         this.secondPlayerId = secondPlayerId;
     }
-
-    public String getSecondSongName() {
-        return secondSongName;
-    }
-
-    public void setSecondSongName(String secondSongName) {
-        this.secondSongName = secondSongName;
-    }
-
-  
-    public String getSecondNeedScore() {
-        return secondNeedScore;
-    }
-
-    public void setSecondNeedScore(String secondNeedScore) {
-        this.secondNeedScore = secondNeedScore;
-    }
-
-    public String getSecondScore() {
-        return secondScore;
-    }
-
-    public void setSecondScore(String secondScore) {
-        this.secondScore = secondScore;
-    }
+    
 
     public String getBattleFlag() {
         return battleFlag;

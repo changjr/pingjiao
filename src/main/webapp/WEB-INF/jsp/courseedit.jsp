@@ -15,9 +15,9 @@
 <form action="${ctx}/course/save" method="post"class="layui-form" enctype="multipart/form-data">
     <input type="hidden" name="cid" value="${course.cid}">
     <div class="layui-form-item">
-        <label class="layui-form-label">課程名稱</label>
+        <label class="layui-form-label">课程名称</label>
         <div class="layui-input-inline">
-            <input type="text" name="cname" value="${course.cname}"  lay-verify="required" placeholder="请输入課程名稱"  class="layui-input">
+            <input type="text" name="cname" value="${course.cname}"  lay-verify="required" placeholder="请输入课程名称"  class="layui-input">
         </div>
     </div>
 

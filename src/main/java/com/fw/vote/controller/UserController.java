@@ -53,7 +53,7 @@ public class UserController {
 
 //    跳转到主页
     @RequestMapping("toindex")
-    public ModelAndView toindex(Match match, ModelAndView mv, Player player){
+    public ModelAndView toindex(Match match, ModelAndView mv, Player player,HttpSession session){
 //        通过matchcontroller那边的matchService执行一遍查询，拿到match
         List<Match> selectList = matchService.select(match);
         for (Match match1:selectList) {
@@ -63,7 +63,18 @@ public class UserController {
             match1.setVoteNumber(countVote);
         }
         mv.addObject("selectList",selectList);
-        mv.setViewName("index");
+        User user= (User) session.getAttribute("user");
+        if(user==null){
+            mv.setViewName("login");
+            return mv;
+        }
+        if(user.getScale().equals("1")){
+//            老师首页
+            mv.setViewName("tindex");
+        }else{
+            mv.setViewName("index");
+        }
+        
         return mv;
     }
 
@@ -133,15 +144,7 @@ public class UserController {
 //        return "redirect:select";
     }
 
-//    @RequestMapping("selectById")
-//    public ModelAndView selectById(String userid,ModelAndView mv){
-//        if(userid!=null&&!userid.equals("")){
-//            User user=userService.selectById(userid);
-//            mv.addObject("user",user);
-//        }
-//        mv.setViewName("addUser");
-//        return mv;
-//    }
+
 
     @RequestMapping("/addUser")
     public String addUser(){

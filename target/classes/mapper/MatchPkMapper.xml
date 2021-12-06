@@ -13,22 +13,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          SELECT
          a.*,
          b.playerId "firstPlayerId",b.playerName "firstPlayerName",
-         c.playerId "secondPlayerId",c.playerName "secondPlayerName",
+         c.cid "secondPlayerId",c.cname "secondPlayerName",
          d.*
          FROM matchpkinfo a
          LEFT JOIN player b ON a.firstPlayerId =b.playerId
-         LEFT JOIN player c ON a.secondPlayerId=c.playerId
+         LEFT JOIN course c ON a.secondPlayerId=c.cid
          LEFT JOIN matchtable d ON a.matchId=d.matchId
-        <where>
-         <if test="matchId!=null and matchId!=''">
-             and matchId like "%"#{matchId}"%"
-         </if>
-
+        <where> 1=1
+            <if test="matchId!=null and matchId!=''">
+                and a.matchId=#{matchId}
+            </if>
+            <if test="firstPlayerId!=null and firstPlayerId!=''">
+                and a.firstPlayerId=#{firstPlayerId}
+            </if>
         </where>
    </select>
    <insert id="insertMatchPk" parameterType="MatchPk">
-   		insert into matchpkinfo(firstPlayerId,firstSongName,secondPlayerId,secondSongName,matchId,grade)
-   		value(#{firstPlayerId},#{firstSongName},#{secondPlayerId},#{secondSongName},#{matchId},#{grade})
+   		insert into matchpkinfo(firstPlayerId,secondPlayerId,matchId,grade)
+   		value(#{firstPlayerId},#{secondPlayerId},#{matchId},#{grade})
    </insert>
    <update id="updateMatchPk" parameterType="MatchPk">
    		update matchpkinfo
@@ -42,35 +44,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
              <if test="secondPlayerId!=null and secondPlayerId!=''">
                  secondPlayerId=#{secondPlayerId},
              </if>
-              <if test="firstSongName!=null and firstSongName!=''">
-                  firstSongName=#{firstSongName},
-              </if>
-              <if test="firstTicketCount!=null and firstTicketCount!=''">
-                  firstTicketCount=#{firstTicketCount},
-              </if>
-              <if test="firstNeedScore!=null and firstNeedScore!=''">
-                  firstNeedScore=#{firstNeedScore},
-              </if>
-              <if test="firstScore!=null and firstScore!=''">
-                  firstScore=#{firstScore},
-              </if>
-              <if test="secondSongName!=null and secondSongName!=''">
-                  secondSongName=#{secondSongName},
-              </if>
               <if test="secondTicketCount!=null and secondTicketCount!=''">
                   secondTicketCount=#{secondTicketCount},
               </if>
-              <if test="secondNeedScore!=null and secondNeedScore!=''">
-                  secondNeedScore=#{secondNeedScore},
-              </if>
-              <if test="secondScore!=null and secondScore!=''">
-                  secondScore=#{secondScore},
-              </if>
+             <if test="grade!=null and grade!=''">
+                 grade=#{grade}
+             </if>
           </set>
           where  battleId=#{battleId}
    </update>
    <select id="selectById" parameterType="MatchPk" resultType="MatchPk">
    		select * from matchpkinfo where battleId=#{battleId}
    </select>
-    
+
+    <select id="selectListByGradeAndMatchId" parameterType="MatchPk" resultType="MatchPk">
+        select a.matchId,a.secondTicketCount,a.battleId,m.matchName,matchInfo,a.grade,a.firstPlayerId,p.playerName as teacherName ,c.cname as courseName,a.secondPlayerId  from matchpkinfo a  left join course c on c.cid = a.secondplayerId left join player p on
+        p.playerId =  a.firstPlayerId left join matchtable m on m.matchId = a.matchId
+        where a.matchId=#{matchId} and a.grade =#{grade}
+    </select>
+
+    <select id="selectListByGradeAndMatchIdAndTeacher" parameterType="MatchPk" resultType="MatchPk">
+        select a.matchId,a.secondTicketCount,a.battleId,m.matchName,matchInfo,a.grade,a.firstPlayerId,p.playerName as teacherName ,c.cname as courseName,a.secondPlayerId  from matchpkinfo a  left join course c on c.cid = a.secondplayerId left join player p on
+        p.playerId =  a.firstPlayerId left join matchtable m on m.matchId = a.matchId
+        where a.matchId=#{matchId} and a.firstPlayerId =#{firstPlayerId}
+    </select>
 </mapper>

@@ -39,7 +39,7 @@
         <div class="row">
             <div class="col-lg-5 col-md-5 col-sm-5 nav-w3ls1">
                 <div class="logo">
-                    <a href="index.jsp" class="logo-w3ls"><h1>生命蓝在线投票系统</h1></a>
+                    <a href="javascript:;" class="logo-w3ls"><h1>东方学院在线评教系统</h1></a>
                 </div>
             </div>
             <div class="col-lg-7 col-md-7 col-sm-7 nav-w3ls2">

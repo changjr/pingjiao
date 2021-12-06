@@ -2,8 +2,8 @@ spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     username: root
-    password: chen1129
-    url: jdbc:mysql://127.0.0.1:3306/vote?characterEncoding=UTF-8
+    password: 123456
+    url: jdbc:mysql://127.0.0.1:3306/pingjiao?characterEncoding=UTF-8
     #访问地址比如：http://localhost:8080/vote/user/toLogin
   mvc:
     view:

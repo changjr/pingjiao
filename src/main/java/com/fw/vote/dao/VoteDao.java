@@ -9,5 +9,5 @@ public interface VoteDao {
     public void update(Vote vote);
     public void delete(String playerId);
     public List<Vote> select(Vote vote);
-    public Vote selectById(String playerId);
+    public List<Vote> selectByUserId(String userId);
 }

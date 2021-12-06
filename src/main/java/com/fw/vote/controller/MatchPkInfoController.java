@@ -1,100 +1,83 @@
 package com.fw.vote.controller;
 
-import com.fw.vote.model.Match;
-import com.fw.vote.model.MatchPkInfo;
+import com.fw.vote.model.MatchPk;
 import com.fw.vote.model.Player;
 import com.fw.vote.model.User;
-import com.fw.vote.service.MatchPkInfoService;
+import com.fw.vote.model.Vote;
+import com.fw.vote.service.MatchPkService;
 import com.fw.vote.service.MatchService;
 import com.fw.vote.service.PlayerService;
+import com.fw.vote.service.VoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
-import java.util.*;
-
-import static sun.audio.AudioPlayer.player;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
 
 @Controller
 @RequestMapping("pk")
 public class MatchPkInfoController {
     @Autowired
-    MatchPkInfoService matchPkInfoService;
+    MatchPkService matchPkService;
 
     @Autowired
     PlayerService playerService;
 
     @Autowired
     MatchService matchService;
+    @Autowired
+    VoteService voteService;
 
 
 
 
     @RequestMapping("listpk")
-    public ModelAndView select(MatchPkInfo matchPkInfo, ModelAndView mv, HttpSession session ){
+    public ModelAndView select(MatchPk matchPk, ModelAndView mv, HttpSession session ){
         User user= (User) session.getAttribute("user");
         if(user==null){
             mv.setViewName("login");
             return mv;
         }
-        matchPkInfo.setGrade(user.getGrade());
-        List<MatchPkInfo> matchPkList=matchPkInfoService.selectListByGradeAndMatchId(matchPkInfo);
+        matchPk.setGrade(user.getGrade());
+        List<MatchPk> matchPkList=matchPkService.selectListByGradeAndMatchId(matchPk);
+        List<Vote> votes = voteService.selectByUserId(user.getUserid());
+        if(matchPkList!=null){
+            if(votes!=null&&!votes.isEmpty()){
+                for (Vote vote : votes) {
+                    for(MatchPk pk :matchPkList){
+                        if(pk.getBattleId().equals(vote.getBattleId()) ){
+                            pk.setBattleFlag("已投票");
+                        }
+                    }
+            
+                }
+        
+            }
+        }
+
         mv.addObject("matchList", matchPkList);
+        mv.addObject("user", user);
         mv.setViewName("voteList");
         return mv;
     }
-
-    @RequestMapping("/selectMatchPk")
-    public ModelAndView selectMatchPk(MatchPkInfo matchPkInfo, ModelAndView mv, Player player, Match match){
-        //List<MatchPk> matchPkList=matchPkService.selectMatchPk(matchPk);
-        List<Player> playerList=playerService.select(player);
-        mv.addObject("playerList", playerList);
-        List<Match> matchList=matchService.select(match);
-        mv.addObject("matchList", matchList);
-        List<MatchPkInfo> matchPkList=matchPkInfoService.selectMatchPkInfo(matchPkInfo);
-        mv.setViewName("selectMatchPk");
-        mv.addObject("matchPkList", matchPkList);
+    
+    @RequestMapping("tlistpk")
+    public ModelAndView selecttlist(MatchPk matchPk, ModelAndView mv, HttpSession session ){
+        User user= (User) session.getAttribute("user");
+        if(user==null){
+            mv.setViewName("login");
+            return mv;
+        }
+        Player teacher = playerService.selectByNo(user.getAccount());
+        matchPk.setFirstPlayerId(teacher.getPlayerId());
+        List<MatchPk> matchPkList=matchPkService.selectListByGradeAndMatchIdAndTeacher(matchPk);
+        mv.addObject("matchList", matchPkList);
+        mv.addObject("user", user);
+        mv.setViewName("tvoteList");
         return mv;
     }
-
-    @RequestMapping("/addMatchPk")
-    public ModelAndView addMatchPk(MatchPkInfo matchPkInfo,ModelAndView mv,Player player, Match match){
-        List<Player> playerList=playerService.select(player);
-        mv.addObject("playerList", playerList);
-        List<Match> matchList=matchService.select(match);
-        mv.addObject("matchList", matchList);
-        matchPkInfoService.insert(matchPkInfo);
-        mv.setViewName("addMatchPk");
-        return mv;
-    }
-
-    @RequestMapping("/updateMatchPk")
-    public ModelAndView matchPkDao(ModelAndView mv,Player player,Match match,String battleId){
-        List<Player> playerList=playerService.select(player);
-        mv.addObject("playerList", playerList);
-        List<Match> matchList=matchService.select(match);
-        mv.addObject("matchList", matchList);
-        MatchPkInfo matchPkInfo=matchPkInfoService.selectById(battleId);
-        mv.addObject("matchPkInfo", matchPkInfo);
-        mv.setViewName("updateMatchPk");
-        return mv;
-    }
-
-    @RequestMapping("/saveMatchPk")
-    public ModelAndView addMatchPk(ModelAndView mv,MatchPkInfo matchPkInfo){
-        matchPkInfoService.insert(matchPkInfo);
-
-        return selectMatchPk(null, mv, null, null);
-    }
-
-    @RequestMapping("/updateBattleFlag")
-    public String updateBattleFlag(MatchPkInfo matchPkInfo){
-        matchPkInfoService.updateFlag(matchPkInfo);
-        return "redirect:/Mpk/selectMatchPk";
-    }
-
-
-
 }

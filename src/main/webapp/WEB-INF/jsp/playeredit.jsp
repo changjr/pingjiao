@@ -27,7 +27,7 @@
         </div>
     </div>
     <div class="layui-form-item">
-    <label class="layui-form-label">选手照片</label>
+    <label class="layui-form-label">教师照片</label>
     <td>
         <input type="file" name="upfile"/>
 
@@ -39,7 +39,7 @@
 </div>
 
     <div class="layui-form-item">
-        <label class="layui-form-label">选手描述</label>
+        <label class="layui-form-label">备注</label>
 
         <td>
             <input type="text" id="playerInfo" value="${player.playerInfo}" name="playerInfo" style="width: 200px;height: 25px;" >

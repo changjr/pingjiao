@@ -11,5 +11,5 @@ public interface PlayerService {
     public List<Player> select(Player player);
     public Player selectById(String playerId);
     public int getCount(Player player);
-
+    public Player selectByNo(String playerId);
 }

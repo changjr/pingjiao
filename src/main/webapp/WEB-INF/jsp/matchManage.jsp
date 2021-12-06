@@ -19,13 +19,13 @@
 <form class="layui-form" action="${ctx}/match/list" method="post">
     <input type="hidden" name="matchId" value="${match.matchId}">
 <div class="layui-form-item">
-        <label class="layui-form-label">比赛名称</label>
+        <label class="layui-form-label">活动名称</label>
         <div class="layui-input-inline">
-            <input type="text" name="matchName" placeholder="请输入比赛名称" autocomplete="off" class="layui-input" value="${match.matchName}">
+            <input type="text" name="matchName" placeholder="请输入评教活动名称" autocomplete="off" class="layui-input" value="${match.matchName}">
         </div>
-        <label class="layui-form-label">比赛地址</label>
+        <label class="layui-form-label">活动地址</label>
         <div class="layui-input-inline">
-            <input type="text" name="matchAddress"  placeholder="请输入比赛地址" autocomplete="off" class="layui-input" value="${match.matchAddress}">
+            <input type="text" name="matchAddress"  placeholder="请输入评教活动地址" autocomplete="off" class="layui-input" value="${match.matchAddress}">
         </div>
 
         <div class="layui-btn-group">
@@ -48,11 +48,11 @@
     </colgroup>
     <thead>
     <tr class="layui-bg-green">
-        <th>比赛名称</th>
-        <th>比赛地址</th>
-        <th>比赛日期1</th>
-        <th>比赛说明</th>
-        <th>比赛照片</th>
+        <th>评教活动名称</th>
+        <th>评教活动地址</th>
+        <th>评教日期</th>
+        <th>评教活动说明</th>
+        <th>评教宣传图片</th>
         <th>操作</th>
     </tr>
     </thead>
@@ -82,7 +82,7 @@
     </c:forEach>
 
 </table>
-<div id="demo7"></div>
+
 
 
 <script src="${ctx}/static/layui-v2.3.0/layui/layui.js"></script>

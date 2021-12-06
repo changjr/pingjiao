@@ -15,14 +15,14 @@
     <%--ENCTYPE="multipart/form-data"文件上传的格式--%>
     <input type="hidden" name="matchId" value="${match.matchId}">
     <div class="layui-form-item">
-        <label class="layui-form-label">比赛名称</label>
+        <label class="layui-form-label">评教活动名称</label>
         <div class="layui-input-inline">
             <input type="text" name="matchName" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input" value="${match.matchName}">
         </div>
     </div>
 
     <div class="layui-form-item">
-        <label class="layui-form-label">比赛地址</label>
+        <label class="layui-form-label">评教活动地址</label>
         <div class="layui-input-inline">
             <input type="text" name="matchAddress" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input" value="${match.matchAddress}">
         </div>
@@ -30,7 +30,7 @@
 
     <div class="layui-form">
         <div class="layui-inline">
-            <label class="layui-form-label">比赛时间</label>
+            <label class="layui-form-label">评教时间</label>
             <div class="layui-input-inline">
                 <input type="text" class="layui-input" name="matchTime" id="test5" placeholder="yyyy-MM-dd" value="<fmt:formatDate value="${match.matchTime}" pattern="yyyy-MM-dd" /> ">
             </div>
@@ -40,7 +40,7 @@
 
 
     <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">比赛说明</label>
+        <label class="layui-form-label">评教活动说明</label>
         <div class="layui-input-inline">
             <%--下面这个标签直接用${match.matchInfo}--%>
             <textarea name="matchInfo" placeholder="请输入内容" class="layui-textarea" style="width: 300px;height: 80px">${match.matchInfo}</textarea>
@@ -48,7 +48,7 @@
     </div>
 
     <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">比赛照片</label>
+        <label class="layui-form-label">评教活动宣传图片</label>
         <div class="layui-form-item">
 
             <td>

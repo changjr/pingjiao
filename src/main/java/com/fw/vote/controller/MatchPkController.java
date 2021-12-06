@@ -62,7 +62,6 @@ public class MatchPkController {
 	public String saveMatchPk(MatchPk matchPk,ModelAndView mv,Player player){
 		List<Player> playerList=playerService.select(player);
 		mv.addObject("playerList", playerList);
-		matchPk.setFirstTicketCount(0);
 		matchPk.setSecondTicketCount(0);
 		matchPk.setBattleFlag("0");
 		matchPkService.insertMatchPk(matchPk);

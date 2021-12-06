@@ -57,6 +57,9 @@
         <delete id="delete" parameterType="Player">
                 delete  from  player where  playerId=#{playerId}
         </delete>
-
+    <!-- 根据Id查询-->
+    <select id="selectByNo"  resultType="player">
+              select * from  player where playerNo=#{playerNo}
+        </select>
 
 </mapper>

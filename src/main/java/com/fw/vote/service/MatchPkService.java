@@ -7,9 +7,18 @@ import java.util.Map;
 
 
 public interface MatchPkService {
-	public List<MatchPk> selectMatchPk(MatchPk matchPk);
-	public List<Map<String,String>> selectMatchPkMap(MatchPk matchPk);
-	public void insertMatchPk(MatchPk matchPk);
-	public void updateMatchPk(MatchPk matchPk);
-	public MatchPk selectById(String battleId);
+  public List<MatchPk> selectMatchPk(MatchPk matchPk);
+  
+  public List<Map<String, String>> selectMatchPkMap(MatchPk matchPk);
+  
+  public void insertMatchPk(MatchPk matchPk);
+  
+  public void updateMatchPk(MatchPk matchPk);
+  
+  public MatchPk selectById(String battleId);
+  
+  public List<MatchPk> selectListByGradeAndMatchId(MatchPk matchPk);
+  
+  public List<MatchPk> selectListByGradeAndMatchIdAndTeacher(MatchPk matchPk);
+  
 }

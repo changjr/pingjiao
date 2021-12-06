@@ -16,9 +16,9 @@
 <div class="select">
     <form action="${ctx}/course/select" method="post" >
         <div class="layui-form-item">
-            <label class="layui-form-label">課程名稱</label>
+            <label class="layui-form-label">课程名称</label>
             <div class="layui-input-inline">
-                <input type="text" name="cname"  placeholder="請輸入課程名稱"  class="layui-input" value="${course.cname}">
+                <input type="text" name="cname"  placeholder="请输入课程名称"  class="layui-input" value="${course.cname}">
 
             </div>
             <button type="submit" class="layui-btn layui-btn-normal">查询</button>
@@ -31,8 +31,8 @@
     </form>
     <table class="layui-table">
         <tr align="center" class="layui-bg-green">
-            <td>課程编号</td>
-            <td>課程名稱</td>
+            <td>课程编码</td>
+            <td>课程名称</td>
             <td align="center">操作</td>
         </tr>
         <c:forEach items="${courseList}" var="course" varStatus="stat">
