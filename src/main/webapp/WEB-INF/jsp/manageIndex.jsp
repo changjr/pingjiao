@@ -21,10 +21,10 @@
                     <img src="${ctx}/static/images/touxiang.png" class="layui-nav-img">
                     个人中心
                 </a>
-                <dl class="layui-nav-child">
-                    <dd><a href="">基本资料</a></dd>
-                    <dd><a href="">安全设置</a></dd>
-                </dl>
+<%--                <dl class="layui-nav-child">--%>
+<%--                    <dd><a href="">基本资料</a></dd>--%>
+<%--                    <dd><a href="">安全设置</a></dd>--%>
+<%--                </dl>--%>
             </li>
             <li class="layui-nav-item"><a href="${ctx}/user/outLogin">退出登录</a></li>
         </ul>
